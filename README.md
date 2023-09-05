@@ -1,5 +1,7 @@
 # DeepLearningWeightInitializing
 
+**Source** : https://www.geeksforgeeks.org/weight-initialization-techniques-for-deep-neural-networks/
+
 ## Zero Initialization
 
 As the name suggests, all the weights are assigned zero as the initial value is zero initialization. This kind of initialization is highly ineffective as neurons learn the same feature during each iteration. Rather, during any kind of constant initialization, the same issue happens to occur. Thus, constant initializations are not preferred.
@@ -95,5 +97,25 @@ from tensorflow.keras import layers
 from tensorflow.keras import initializers
  
 initializer = tf.keras.initializers.HeUniform()
+layer = tf.keras.layers.Dense(3, kernel_initializer=initializer)
+```
+
+## He Normal Initialization
+
+In He Normal weight initialization, the weights are assigned from values of a normal distribution as follows:
+
+w ~ N(0, sigma)
+
+Here, sigma is given by:
+
+ <img src="https://www.geeksforgeeks.org/wp-content/ql-cache/quicklatex.com-6cb4c9f872f46c1cf3a33c334eb39ea1_l3.svg" class="ql-img-inline-formula quicklatex-auto-format" alt=" \sigma =  \sqrt{ \frac{2}{fan\_in} }" title="Rendered by QuickLaTeX.com" height="48" width="146" style="vertical-align:-17px">
+
+He Uniform Initialization, too, is suitable for layers where ReLU activation function is used. He Uniform Initialization can be implemented in Keras layers in Python as follows:
+
+```
+from tensorflow.keras import layers
+from tensorflow.keras import initializers
+ 
+initializer = tf.keras.initializers.HeNormal()
 layer = tf.keras.layers.Dense(3, kernel_initializer=initializer)
 ```
